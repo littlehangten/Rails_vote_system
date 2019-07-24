@@ -16,7 +16,6 @@ class CandidatesController < ApplicationController
       flash[:notice] = '新增成功'
       redirect_to "/"
     else
-      flash[:notice] = '新增失敗'
       # render action: :new 的縮寫
       # render file: '../views/candidates/new.html.erb'
       # 我要去借 new 的template
