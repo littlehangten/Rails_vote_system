@@ -10,7 +10,7 @@ class CandidatesController < ApplicationController
   # create是個沒有畫面的方法
   def create
     @candidate = Candidate.new(candidate_params)
-    
+
     # 假如儲存成功時會轉到首頁
     if @candidate.save
       flash[:notice] = '新增成功'
