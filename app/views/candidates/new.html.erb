@@ -1,0 +1,24 @@
+<h1>新增候選人</h1>
+<a href="/">回候選人列表</a>
+
+<%= form_for(@candidate, html: {id: 'candidate_form' }) do |form| %>
+  <div>
+    <%= form.label :name, '姓名' %>
+    <!-- <input type="text" name="name" id="name"> 原本的寫法--> 
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <!-- <label for="age">年齡</label>原本的寫法 -->
+    <%= form.label :age, '年齡' %>
+    <%= form.text_field :age %>
+  </div>
+  <div>
+    <%= form.label :party, '黨派' %>
+    <%= form.text_field :party %>
+  </div>
+  <div>
+    <%= form.label :platform, '政見' %>
+    <%= form.text_area :platform %>
+  </div>
+  <input type="submit" value="新增候選人">
+<% end %>
