@@ -35,6 +35,23 @@ class CandidatesController < ApplicationController
     end
   end
 
+  # /candidates/1/edit -> routes 長的樣子 /candidate/:id/edit
+  def edit
+    @candidate = Candidate.find_by(id: params[:id])
+  end
+
+  # patch /candidates/2
+  def update
+    @candidate = Candidate.find_by(id: params[:id])
+
+    if @candidate.update(candidate_params)
+      flash[:notice] = "更新成功"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   # private也是個方法
   private
 

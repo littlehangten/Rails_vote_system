@@ -21,9 +21,9 @@
             <!-- <a href="/candidate/<%= candidate.id %>" class="more-detail">看政見</a> html原本的寫法 -->
             <!-- <%= link_to "看政見", candidate_path(candidate.id), class:"more-detail" %> 最原始的寫法-->
             <%= link_to "政見", candidate, class: 'btn more-detail' %>
-            <%= link_to "修改", '#', class: 'btn vote' %>
-            <%= link_to "刪除", '#', class: 'btn update' %>
-            <%= link_to "投票", '#', class: 'btn destroy' %>
+            <%= link_to "投票", '#', class: 'btn vote' %>
+            <%= link_to "修改",  edit_candidate_path(candidate), class: 'btn update' %>
+            <%= link_to "刪除", '#', class: 'btn destroy' %>
         </div>
     </div>
     <!-- 候選人end -->
