@@ -3,55 +3,21 @@
 
 <div class="candidate-list">
     
+    <!-- 這個 candidate 是在 controller 裡的 index 抓到所有候選人的名單 -->
+    <% @candidates.each do |candidate| %>
     <!-- 候選人start -->
     <div class="candidate-card">
         <div class="avater">
             <img src="https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
         </div>
         <div class="info">
-            <h1>小鷹(51)</h1>
-            <h2>美國綠</h2>
+            <!-- h1及h2 的內容不能寫死，因為候選人是不相同的,透過each的方式去資料庫抓出資料，有幾個就跑出幾個-->
+            <!-- 記得 candidate不要加＠,來源是從上面的迴圈跑出來的 |candidate| -->
+            <h1><%= candidate.name %>(<%= @candidate.age %>)</h1>
+            <h2><%= candidate.party %></h2>
             <a href="#" class="more-detail">看政見</a>
         </div>
     </div>
     <!-- 候選人end -->
-
-    <!-- 候選人start -->
-    <div class="candidate-card">
-        <div class="avater">
-            <img src="https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-        </div>
-        <div class="info">
-            <h1>小鷹(51)</h1>
-            <h2>美國綠</h2>
-            <a href="#" class="more-detail">看政見</a>
-        </div>
-    </div>
-    <!-- 候選人end -->
-
-    <!-- 候選人start -->
-    <div class="candidate-card">
-        <div class="avater">
-            <img src="https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-        </div>
-        <div class="info">
-            <h1>小鷹(51)</h1>
-            <h2>美國綠</h2>
-            <a href="#" class="more-detail">看政見</a>
-        </div>
-    </div>
-    <!-- 候選人end -->
-
-    <!-- 候選人start -->
-    <div class="candidate-card">
-        <div class="avater">
-            <img src="https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-        </div>
-        <div class="info">
-            <h1>小鷹(51)</h1>
-            <h2>美國綠</h2>
-            <a href="#" class="more-detail">看政見</a>
-        </div>
-    </div>
-    <!-- 候選人end -->
+    <% end %>
 </div>
