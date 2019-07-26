@@ -1,5 +1,8 @@
 <h1>候選人列表</h1>
-<a href="/candidates/new">新增候選人</a>
+<!-- <a href="/candidates/new">新增候選人</a> 原本的寫法 -->
+<!-- 第一個參數字樣 第二個參數連結 -->
+<!-- new_candidate_path 及 link_to 是方法 -->
+<%= link_to "新增候選人", new_candidate_path %>
 
 <div class="candidate-list">
     
@@ -15,7 +18,9 @@
             <!-- 記得 candidate不要加＠,來源是從上面的迴圈跑出來的 |candidate| -->
             <h1><%= candidate.name %>(<%= candidate.age %>)</h1>
             <h2><%= candidate.party %></h2>
-            <a href="#" class="more-detail">看政見</a>
+            <!-- <a href="/candidate/<%= candidate.id %>" class="more-detail">看政見</a> html原本的寫法 -->
+            <!-- <%= link_to "看政見", candidate_path(candidate.id), class:"more-detail" %> 最原始的寫法-->
+            <%= link_to "看政見", candidate, class:"more-detail" %>
         </div>
     </div>
     <!-- 候選人end -->
