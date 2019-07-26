@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <%= flash[:notice] %>
+    <!-- <%= flash[:notice] %> 可以改成下面的寫法 -->
+    <%= notice %>
     <%= yield %>
   </body>
 </html>

@@ -1,4 +1,8 @@
 class CandidatesController < ApplicationController
+  # before_action(在action之前 做某件事情):是個類別方法
+  # 舊專案(rails 4)可以看這樣的程式碼(以前的用法) before_filler :ind_candidate
+  before_action :find_candidate, only: [:show, :edit, :update, :destroy]
+
   def index
     # 給一個變數(複數) = 找出所有候選人的列表
     @candidates = Candidate.all
@@ -10,8 +14,8 @@ class CandidatesController < ApplicationController
     # 如果要給view使用的話 記得要加 @，如果不要的話 就不要@(區域變數)
     # @candidate = Candidate.where(id: params[:id]).last 這是比較笨的做法之一
     # @candidate = Candidate.find(params[:id]) 只能找id
-    @candidate = Candidate.find_by(id: params[:id]) 
-    # select * from candidate where id =? SQL的語法
+    # @candidate = Candidate.find_by(id: params[:id]) 比較有彈性
+    # 在 SQL的語法 select * from candidate where id =? 
   end
 
   def new
@@ -25,8 +29,7 @@ class CandidatesController < ApplicationController
 
     # 假如儲存成功時會轉到首頁
     if @candidate.save
-      flash[:notice] = '新增成功'
-      redirect_to "/"
+      redirect_to root_path, notice: '新增成功' 
     else
       # render action: :new 的縮寫
       # render file: '../views/candidates/new.html.erb'
@@ -37,16 +40,13 @@ class CandidatesController < ApplicationController
 
   # /candidates/1/edit -> routes 長的樣子 /candidate/:id/edit
   def edit
-    @candidate = Candidate.find_by(id: params[:id])
   end
 
   # patch /candidates/2
   def update
-    @candidate = Candidate.find_by(id: params[:id])
 
     if @candidate.update(candidate_params)
-      flash[:notice] = "更新成功"
-      redirect_to root_path
+      redirect_to root_path, notice: '更新成功'
     else
       render :edit
     end
@@ -54,14 +54,17 @@ class CandidatesController < ApplicationController
 
   # delete /candidates/:id
   def destroy
-    @candidate = Candidate.find_by(id: params[:id])
     @candidate.destroy
-    flash[:notice] = "資料已刪除"
-    redirect_to root_path
+    redirect_to root_path, notice: '資料已刪除'
   end
 
   # private也是個方法
   private
+  
+  # 重複的程式碼 寫成方法 可重複使用。 
+  def find_candidate
+    @candidate = Candidate.find_by(id: params[:id])
+  end
 
   def candidate_params
     # 用實體變數接起來，用params去抓一群東西(姓名、黨派......)
