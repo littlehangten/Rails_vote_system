@@ -1,5 +1,7 @@
 class CandidatesController < ApplicationController
   def index
+    # 給一個變數(複數) = 找出所有候選人的列表
+    @candidates = Candidate.all
   end
 
   def new
