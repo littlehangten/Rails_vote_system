@@ -1,0 +1,10 @@
+<!-- 切記不要在view上去撈資料 這些都是controller的事情, 雖然view是可以做到撈資料這件事情 -->
+<h1><%= @candidate.name %></h1>
+<ul>
+    <li>年齡：<%= @candidate.age %></li>
+    <li>黨派：<%= @candidate.party %></li>
+    <!-- 加上simple_format 就可以把newline轉換成br -->
+    <li>政見：<%= simple_format(@candidate.platform)%></li>
+</ul>
+
+<%= link_to "回候選人列表", root_path %>

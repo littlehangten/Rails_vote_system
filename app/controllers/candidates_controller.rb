@@ -3,6 +3,16 @@ class CandidatesController < ApplicationController
     # 給一個變數(複數) = 找出所有候選人的列表
     @candidates = Candidate.all
   end
+  
+  # 如果要去資料庫撈東西時，controller 裡還是要寫 show 的 action 
+  # http://localhost:3000/candidates/1 -> routes 長的樣子 /candidate/:id
+  def show
+    # 如果要給view使用的話 記得要加 @，如果不要的話 就不要@(區域變數)
+    # @candidate = Candidate.where(id: params[:id]).last 這是比較笨的做法之一
+    # @candidate = Candidate.find(params[:id]) 只能找id
+    @candidate = Candidate.find_by(id: params[:id]) 
+    # select * from candidate where id =? SQL的語法
+  end
 
   def new
     # 要在controller上做完，不要在views上做事情
@@ -24,7 +34,7 @@ class CandidatesController < ApplicationController
       render :new
     end
   end
-  
+
   # private也是個方法
   private
 
