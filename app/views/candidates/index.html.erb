@@ -13,7 +13,7 @@
         <div class="info">
             <!-- h1及h2 的內容不能寫死，因為候選人是不相同的,透過each的方式去資料庫抓出資料，有幾個就跑出幾個-->
             <!-- 記得 candidate不要加＠,來源是從上面的迴圈跑出來的 |candidate| -->
-            <h1><%= candidate.name %>(<%= @candidate.age %>)</h1>
+            <h1><%= candidate.name %>(<%= candidate.age %>)</h1>
             <h2><%= candidate.party %></h2>
             <a href="#" class="more-detail">看政見</a>
         </div>
