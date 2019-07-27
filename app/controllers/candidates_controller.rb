@@ -1,7 +1,7 @@
 class CandidatesController < ApplicationController
   # before_action(在action之前 做某件事情):是個類別方法
   # 舊專案(rails 4)可以看這樣的程式碼(以前的用法) before_filler :ind_candidate
-  before_action :find_candidate, only: [:show, :edit, :update, :destroy]
+  before_action :find_candidate, only: [:show, :edit, :update, :destroy, :vote]
 
   def index
     # 給一個變數(複數) = 找出所有候選人的列表
@@ -57,11 +57,18 @@ class CandidatesController < ApplicationController
     @candidate.destroy
     redirect_to root_path, notice: '資料已刪除'
   end
+  
+  def vote
+    # 會動但比較醜的寫法
+    @candidate.vote = @candidate.vote + 1
+    @candidate.save
+    redirect_to root_path, notice: '投票完成'
+  end
 
   # private也是個方法
   private
   
-  # 重複的程式碼 寫成方法 可重複使用。 
+  # 重複的程式碼 寫成方法 可重複使用。
   def find_candidate
     @candidate = Candidate.find_by(id: params[:id])
   end

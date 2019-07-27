@@ -16,13 +16,14 @@
         <div class="info">
             <!-- h1及h2 的內容不能寫死，因為候選人是不相同的,透過each的方式去資料庫抓出資料，有幾個就跑出幾個-->
             <!-- 記得 candidate不要加＠,來源是從上面的迴圈跑出來的 |candidate| -->
-            <h1><%= candidate.name %>(<%= candidate.age %>)</h1>
-            <h2><%= candidate.party %></h2>
+            <h1>候選人：<%= candidate.name %>(<%= candidate.age %>)</h1>
+            <h2>政黨：<%= candidate.party %></h2>
+            <h2>得票數：<%= candidate.vote %></h2>
             <!-- <a href="/candidate/<%= candidate.id %>" class="more-detail">看政見</a> html原本的寫法 -->
-            <!-- <%= link_to "看政見", candidate_path(candidate.id), class:"more-detail" %> 最原始的寫法-->
+            <!-- <%= link_to "看政見", candidate_path(candidate.id), class:"more-detail" %> rails 最原始的寫法-->
             <%= link_to "政見", candidate, class: 'btn more-detail' %>
-            <%= link_to "投票", '#', class: 'btn vote' %>
-            <%= link_to "修改",  edit_candidate_path(candidate), class: 'btn update' %>
+            <%= link_to "投票", vote_candidate_path(candidate), method: 'patch', class: 'btn vote', data: { confirm: '確定進行投票嗎?!'} %>
+            <%= link_to "修改", edit_candidate_path(candidate), class: 'btn update' %>
             <%= link_to "刪除", candidate, method: 'delete', class: 'btn destroy', data: { confirm: '確認刪除?!' } %>
         </div>
     </div>
