@@ -61,6 +61,8 @@ class CandidatesController < ApplicationController
   def vote
     # 從候選人的角度
     @candidate.votes.create(ip_address: request.remote_ip)
+
+    # counter cache
     redirect_to root_path, notice: '投票完成'
 
     # 從票的角度
