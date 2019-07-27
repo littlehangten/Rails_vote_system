@@ -18,7 +18,7 @@
             <!-- 記得 candidate不要加＠,來源是從上面的迴圈跑出來的 |candidate| -->
             <h1>候選人：<%= candidate.name %>(<%= candidate.age %>)</h1>
             <h2>政黨：<%= candidate.party %></h2>
-            <h2>得票數：<%= candidate.votes.count %></h2>
+            <h2>得票數：<%= candidate.vote %></h2>
             <!-- <a href="/candidate/<%= candidate.id %>" class="more-detail">看政見</a> html原本的寫法 -->
             <!-- <%= link_to "看政見", candidate_path(candidate.id), class:"more-detail" %> rails 最原始的寫法-->
             <%= link_to "政見", candidate, class: 'btn more-detail' %>
