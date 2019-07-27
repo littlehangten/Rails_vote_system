@@ -59,10 +59,14 @@ class CandidatesController < ApplicationController
   end
   
   def vote
-    # 會動但比較醜的寫法
-    @candidate.vote = @candidate.vote + 1
-    @candidate.save
+    # 從候選人的角度
+    @candidate.votes.create(ip_address: request.remote_ip)
     redirect_to root_path, notice: '投票完成'
+
+    # 從票的角度
+    # Vote.create(candidate_id: @candidate.id, ip_address: request.remote_ip) 這樣才對
+    # Vote.create(candidate: @candidate, ip_address: request.remote_ip)
+    # redirect_to root_path, notice: '投票完成'
   end
 
   # private也是個方法
