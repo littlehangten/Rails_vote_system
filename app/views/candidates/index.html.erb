@@ -4,8 +4,6 @@
 <!-- new_candidate_path 及 link_to 是方法 -->
 <%= link_to "新增候選人", new_candidate_path %>
 
-<%= say_hello_to("kk")%>
-
 <div class="candidate-list">
     <%= paginate @candidates %>
     <!-- 這個 candidate 是在 controller 裡的 index 抓到所有候選人的名單 -->

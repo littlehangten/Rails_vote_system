@@ -2,6 +2,8 @@ class CandidatesController < ApplicationController
   # before_action(在action之前 做某件事情):是個類別方法
   # 舊專案(rails 4)可以看這樣的程式碼(以前的用法) before_filler :ind_candidate
   before_action :find_candidate, only: [:show, :edit, :update, :destroy, :vote]
+  # Devise使用的before_action
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     # 給一個變數(複數) = 找出所有候選人的列表
@@ -42,7 +44,7 @@ class CandidatesController < ApplicationController
 
   # /candidates/1/edit -> routes 長的樣子 /candidate/:id/edit
   def edit
-    redirect_to root_path, alert: '需要登入' if not user_signed_in?
+    # redirect_to root_path, alert: '需要登入' if not user_signed_in?
     # redirect_to root_path, alert: '需要登入' unless not user_signed_in? 剛上面一樣的效果
   end
 
