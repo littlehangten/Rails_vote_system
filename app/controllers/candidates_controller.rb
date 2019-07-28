@@ -42,6 +42,8 @@ class CandidatesController < ApplicationController
 
   # /candidates/1/edit -> routes 長的樣子 /candidate/:id/edit
   def edit
+    redirect_to root_path, alert: '需要登入' if not user_signed_in?
+    # redirect_to root_path, alert: '需要登入' unless not user_signed_in? 剛上面一樣的效果
   end
 
   # patch /candidates/2
