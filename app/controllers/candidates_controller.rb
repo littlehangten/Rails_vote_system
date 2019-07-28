@@ -2,7 +2,7 @@ class CandidatesController < ApplicationController
   # before_action(在action之前 做某件事情):是個類別方法
   # 舊專案(rails 4)可以看這樣的程式碼(以前的用法) before_filler :ind_candidate
   before_action :find_candidate, only: [:show, :edit, :update, :destroy, :vote]
-  # Devise使用的before_action
+  # Devise使用的before_action，怎麼使用：看文件。
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -65,10 +65,14 @@ class CandidatesController < ApplicationController
   end
   
   def vote
-    # 從候選人的角度
-    @candidate.votes.create(ip_address: request.remote_ip)
+    # 從候選人的角度來新增,這個時候還沒有 vote 這個model
+    # @candidate.votes.create(ip_address: request.remote_ip)
 
-    # counter cache
+    # 從登入者的角度來新增，程式碼比較讓人容易懂
+    current_user.votes.create(ip_address: request.remote_ip, candidate: @candidate)
+
+    # 從候選人的角度來新增
+    # @candidate.votes.create(ip_address: request.remote_ip, user: current_user)
     redirect_to root_path, notice: '投票完成'
 
     # 從票的角度

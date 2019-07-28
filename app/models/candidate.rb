@@ -8,4 +8,6 @@ class Candidate < ApplicationRecord
   # votes
   # votes= 
   has_many :votes
+  # 透過 has_many 與 user 有關連(虛線)，但實際上要透過 votes 來查詢。
+  has_many :users, through: :votes
 end
