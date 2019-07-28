@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # 與下面路徑是一樣的意思
   # get '/', to: 'candidates#index'
   root 'candidates#index'

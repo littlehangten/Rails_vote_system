@@ -1,0 +1,17 @@
+  <nav class="top-nav">
+    <ul>
+        <li><%= link_to "首頁", root_path %></li>
+        <% if user_signed_in? %>
+          <!-- <li>hi, ...Email</li> html 原本的寫法 -->
+          <!-- user物件 使用email欄位  -->
+          <li>hi, <%= current_user.email %></li>
+          <!-- <li><a href="">登出</a></li> html 原本的寫法 -->
+          <li><%= link_to "登出", destroy_user_session_path, method: "delete" %></li>
+        <% else %>
+          <!-- <li><a href="#">登入</a></li> html 原本的寫法 -->
+          <li><%= link_to "登入", new_user_session_path %></li>
+          <!-- <li><a href="#">註冊</a></li> html 原本的寫法 -->
+          <li><%= link_to "註冊", new_user_registration_path %></li>
+        <% end %>
+        </ul>
+  </nav>
