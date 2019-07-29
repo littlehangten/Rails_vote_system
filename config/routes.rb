@@ -15,4 +15,11 @@ Rails.application.routes.draw do
       patch :vote
     end
   end
+
+  # /admin
+  namespace :admin do
+    root 'pages#index'
+
+    resources :candidates
+  end
 end
